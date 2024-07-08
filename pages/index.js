@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg text-center">
-        <h1 className="text-4xl font-bold text-white mb-6">Spotify Data Visualizer</h1>
+        <h1 className="text-4xl font-bold text-white mb-6">Spotiviz</h1>
         {session ? (
           <div className="space-y-4">
             <p className="text-green-400">Signed in as {session.user.email}</p>
