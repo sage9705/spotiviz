@@ -22,7 +22,7 @@ export default function Dashboard() {
   return (
     <Layout>
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold my-8 text-center">Your Spotify Insights</h1>
+        <h1 className="text-3xl text-[#903bac] font-bold my-8 text-center">Your Spotify Insights</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="chart-container">
             <TopTracks />

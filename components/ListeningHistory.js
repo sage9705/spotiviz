@@ -30,7 +30,11 @@ export default function ListeningHistory() {
     fetch('/api/spotify/listening-history')
       .then(res => res.json())
       .then(data => {
-        setHistory(data);
+        if (Array.isArray(data)) {
+          setHistory(data);
+        } else {
+          throw new Error('Data is not an array');
+        }
         setIsLoading(false);
       })
       .catch(err => {
@@ -41,6 +45,7 @@ export default function ListeningHistory() {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
+  if (history.length === 0) return <div>No listening history available</div>;
 
   const chartData = {
     labels: history.map(item => new Date(item.played_at).toLocaleDateString()),
@@ -83,5 +88,5 @@ export default function ListeningHistory() {
     },
   };
 
-  return <Line data={chartData} options={options} />;
+  return <Line options={options} data={chartData} />;
 }
