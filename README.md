@@ -44,12 +44,12 @@ Before you begin, ensure you have met the following requirements:
     npm install
    ``
 4. Create a `.env.local` file in the root directory and add the following environment variables:
-   ``
+5. 
     NEXTAUTH_URL=http://localhost:3000
     NEXTAUTH_SECRET=your_nextauth_secret
     SPOTIFY_CLIENT_ID=your_spotify_client_id
     SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
-  ``
+ 
 
 
 Replace `your_nextauth_secret`, `your_spotify_client_id`, and `your_spotify_client_secret` with your actual values.
