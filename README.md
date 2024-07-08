@@ -1,40 +1,101 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Spotiviz
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Spotiviz (Spotify Data Visualizer) is a web application built with Next.js that allows users to visualize their Spotify listening data. The app provides insights into users' top tracks, top artists, genre distribution, and listening history through interactive charts and graphs.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Secure authentication with Spotify using NextAuth.js
+- Visualization of top tracks
+- Visualization of top artists
+- Genre distribution analysis
+- Listening history timeline
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Technologies Used
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Next.js
+- React
+- NextAuth.js for authentication
+- Chart.js for data visualization
+- Tailwind CSS for styling
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Prerequisites
 
-## Learn More
+Before you begin, ensure you have met the following requirements:
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js (v14 or later)
+- npm or yarn
+- A Spotify Developer account and a registered Spotify app
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Clone the repository:
+   ``
+    git clone https://github.com/sage9705/spotiviz.git
+   ``
+2. Navigate to the project directory:
+   ``
+    cd spotiviz
+   ``
+3. Install the dependencies:
+   ``
+    npm install
+   ``
+4. Create a `.env.local` file in the root directory and add the following environment variables:
+   ``
+    NEXTAUTH_URL=http://localhost:3000
+    NEXTAUTH_SECRET=your_nextauth_secret
+    SPOTIFY_CLIENT_ID=your_spotify_client_id
+    SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+  ``
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Replace `your_nextauth_secret`, `your_spotify_client_id`, and `your_spotify_client_secret` with your actual values.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Usage
+
+1. Start the development server:
+   ``
+   npm run dev
+   ``
+
+2. Open your browser and navigate to `http://localhost:3000`
+
+3. Click on "Sign in with Spotify" and authorize the application
+
+4. Explore your Spotify data visualizations on the dashboard
+
+## Project Structure
+
+- `/pages`: Contains the main pages of the application
+- `/components`: Reusable React components
+- `/lib`: Utility functions and API helpers
+- `/styles`: Global styles and Tailwind CSS configuration
+- `/public`: Static assets
+
+## Contributing
+
+Contributions to the Spotify Data Visualizer are welcome. Please follow these steps:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a pull request
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+
+Project Link: https://github.com/yourusername/spotify-data-visualizer
+
+## Acknowledgements
+
+- [Next.js](https://nextjs.org/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [Chart.js](https://www.chartjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Spotify Web API](https://developer.spotify.com/documentation/web-api/)
