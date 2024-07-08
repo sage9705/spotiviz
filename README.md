@@ -89,7 +89,6 @@ Contributions to the Spotify Data Visualizer are welcome. Please follow these st
 This project is licensed under the GPL-2.0 License. See the `LICENSE` file for details.
 
 
-Project Link: https://github.com/yourusername/spotify-data-visualizer
 
 ## Acknowledgements
 
