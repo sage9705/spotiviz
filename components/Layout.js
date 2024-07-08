@@ -18,7 +18,8 @@ export default function Layout({ children }) {
             <div className="flex justify-between h-16">
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
-                  <h1 className="text-xl font-bold">Spotiviz</h1>
+                  <img className="h-8 w-auto pr-1 pb-3" src="./spotiviz-logo.png" alt="Spotiviz logo" />
+                  <h1 className="text-xl text-[#903bac] mt-1 font-bold">Spotiviz</h1>
                 </div>
               </div>
               <div className="flex items-center">
