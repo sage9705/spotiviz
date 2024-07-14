@@ -54,7 +54,7 @@ export default function TopArtists() {
       },
       title: {
         display: true,
-        text: 'Your Top Artists',
+        text: 'Top Artists',
       },
     },
   };

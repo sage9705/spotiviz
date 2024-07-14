@@ -65,7 +65,7 @@ export default function TopTracks() {
       },
       title: {
         display: true,
-        text: 'Your Top Tracks',
+        text: 'Top Tracks',
       },
     },
   };

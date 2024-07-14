@@ -54,7 +54,7 @@ export default function GenreDistribution() {
       },
       title: {
         display: true,
-        text: 'Your Genre Distribution',
+        text: 'Genre Distribution',
       },
     },
   };

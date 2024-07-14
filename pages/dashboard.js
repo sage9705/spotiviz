@@ -23,21 +23,24 @@ export default function Dashboard() {
     <Layout>
       <div className="container mx-auto px-4">
         <h1 className="text-3xl text-[#903bac] font-bold my-8 text-center">Your Spotify Insights</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-  <div className="w-full">
-    <GenreDistribution />
-  </div>
-  <div className="w-full">
-    <TopArtists />
-  </div>
-  <div className="w-full md:col-span-2">
-    <ListeningHistory />
-  </div>
-  <div className="w-full md:col-span-2">
-    <TopTracks />
-  </div>
-
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="chart-wrapper">
+          <h2 className="text-2xl font-bold mb-4">Genre Distribution</h2>
+          <GenreDistribution />
         </div>
+        <div className="chart-wrapper">
+          <h2 className="text-2xl font-bold mb-4">Listening History</h2>
+          <ListeningHistory />
+        </div>
+        <div className="chart-wrapper">
+          <h2 className="text-2xl font-bold mb-4">Top Artists</h2>
+          <TopArtists />
+        </div>
+        <div className="chart-wrapper">
+          <h2 className="text-2xl font-bold mb-4">Top Tracks</h2>
+          <TopTracks />
+        </div>
+      </div>
       </div>
     </Layout>
   );

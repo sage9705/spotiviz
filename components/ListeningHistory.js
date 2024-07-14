@@ -72,7 +72,7 @@ export default function ListeningHistory() {
       },
       title: {
         display: true,
-        text: 'Your Listening History',
+        text: 'Listening History',
       },
     },
     scales: {
