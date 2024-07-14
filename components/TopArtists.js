@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import useWindowSize from '../hooks/useWindowSize';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -8,6 +9,8 @@ export default function TopArtists() {
   const [artists, setArtists] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { width } = useWindowSize();
+  const chartSize = width < 768 ? { height: 300 } : { height: 400 };
 
   useEffect(() => {
     fetch('/api/spotify/top-artists')
@@ -44,6 +47,7 @@ export default function TopArtists() {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top',
@@ -55,5 +59,9 @@ export default function TopArtists() {
     },
   };
 
-  return <Pie data={chartData} options={options} />;
+  return (
+    <div className="chart-container" style={chartSize}>
+      <Pie data={chartData} options={options} />
+    </div>
+  );
 }

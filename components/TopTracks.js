@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import useWindowSize from '../hooks/useWindowSize';
 
 ChartJS.register(
   CategoryScale,
@@ -23,6 +24,8 @@ export default function TopTracks() {
   const [tracks, setTracks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { width } = useWindowSize();
+  const chartSize = width < 768 ? { height: 300 } : { height: 400 };
 
   useEffect(() => {
     fetch('/api/spotify/top-tracks')
@@ -55,6 +58,7 @@ export default function TopTracks() {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top',
@@ -66,5 +70,9 @@ export default function TopTracks() {
     },
   };
 
-  return <Bar options={options} data={chartData} />;
+  return (
+    <div className="chart-container" style={chartSize}>
+      <Bar data={chartData} options={options} />
+    </div>
+  );
 }

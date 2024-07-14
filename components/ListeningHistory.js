@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import useWindowSize from '../hooks/useWindowSize';
 
 ChartJS.register(
   CategoryScale,
@@ -25,6 +26,8 @@ export default function ListeningHistory() {
   const [history, setHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { width } = useWindowSize();
+  const chartSize = width < 768 ? { height: 300 } : { height: 400 };
 
   useEffect(() => {
     fetch('/api/spotify/listening-history')
@@ -62,6 +65,7 @@ export default function ListeningHistory() {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top',
@@ -88,5 +92,9 @@ export default function ListeningHistory() {
     },
   };
 
-  return <Line options={options} data={chartData} />;
+  return (
+    <div className="chart-container" style={chartSize}>
+      <Line data={chartData} options={options} />
+    </div>
+  );
 }
