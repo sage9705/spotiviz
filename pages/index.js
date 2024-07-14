@@ -1,34 +1,53 @@
 import { useSession, signOut } from "next-auth/react";
 import Link from 'next/link';
 import LoginButton from '../components/LoginButton';
+import Head from 'next/head';
 
 export default function Home() {
   const { data: session } = useSession();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
-      <div className="bg-gray-800 p-8 rounded-lg shadow-lg text-center">
-        <h1 className="text-4xl font-bold text-white mb-6">Spotiviz</h1>
-        {session ? (
-          <div className="space-y-4">
-            <p className="text-green-400">Signed in as {session.user.email}</p>
-            <Link href="/dashboard" className="block w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-                Go to Dashboard
-            </Link>
-            <button
-              onClick={() => signOut()}
-              className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300"
-            >
-              Sign out
-            </button>
+    <>
+      <Head>
+        <title>Spotiviz - Visualize Your Spotify Data</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+      </Head>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-green-900 to-black">
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="relative z-10 bg-gray-800 p-10 rounded-2xl shadow-2xl text-center max-w-md w-full mx-4">
+          <div className="mb-8">
+            <h1 className="text-5xl font-bold text-blue-800 mb-2 font-poppins">Spotiviz</h1>
+            <p className="text-green-400 text-lg">Visualize Your Spotify Journey</p>
           </div>
-        ) : (
-          <div>
-            <p className="text-gray-300 mb-4">Sign in to visualize your Spotify data</p>
-            <LoginButton />
-          </div>
-        )}
+          {session ? (
+            <div className="space-y-6">
+              <p className="text-green-400 font-semibold">Hello, {session.user.name || session.user.email}</p>
+              <Link href="/dashboard" className="block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-4 rounded-full transition duration-300 transform hover:scale-105">
+                Explore Your Dashboard
+              </Link>
+              <button
+                onClick={() => signOut()}
+                className="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-4 rounded-full transition duration-300 transform hover:scale-105"
+              >
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            <div>
+              <p className="text-gray-300 mb-6 text-lg">Unlock insights into your musical taste</p>
+              <LoginButton />
+            </div>
+          )}
+        </div>
+        <div className="absolute bottom-4 left-4 text-white text-sm">
+          Powered by Spotify API
+        </div>
       </div>
-    </div>
+      <style jsx global>{`
+        body {
+          font-family: 'Poppins', sans-serif;
+        }
+      `}</style>
+    </>
   );
 }
