@@ -1,10 +1,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Layout from "../components/Layout";
-import TopTracks from "../components/TopTracks";
-import TopArtists from "../components/TopArtists";
-import GenreDistribution from "../components/GenreDistribution";
-import ListeningHistory from "../components/ListeningHistory";
+
 
 export default function Dashboard() {
   const { data: session, status } = useSession();
@@ -21,26 +18,25 @@ export default function Dashboard() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl text-[#903bac] font-bold my-8 text-center">Your Spotify Insights</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="chart-wrapper">
-          <h2 className="text-2xl font-bold mb-4">Genre Distribution</h2>
-          <GenreDistribution />
+      <div className="container mx-auto px-4 flex">
+        <div className="w-3/4 pr-6">
+          <h1 className="text-3xl text-[#903bac] font-bold my-8">Your Spotify Insights</h1>
+    
+          <div className="mt-8">
+            <h2 className="text-2xl font-bold mb-4">Top Artists of All Time</h2>
+            <button className="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+              View All Top Artists
+            </button>
+          </div>
+          <div className="mt-8">
+            <h2 className="text-2xl font-bold mb-4">Top Tracks of All Time</h2>
+            <button className="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+              View All Top Tracks
+            </button>
+          </div>
         </div>
-        <div className="chart-wrapper">
-          <h2 className="text-2xl font-bold mb-4">Listening History</h2>
-          <ListeningHistory />
+        <div className="w-1/4">
         </div>
-        <div className="chart-wrapper">
-          <h2 className="text-2xl font-bold mb-4">Top Artists</h2>
-          <TopArtists />
-        </div>
-        <div className="chart-wrapper">
-          <h2 className="text-2xl font-bold mb-4">Top Tracks</h2>
-          <TopTracks />
-        </div>
-      </div>
       </div>
     </Layout>
   );
