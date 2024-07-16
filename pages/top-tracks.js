@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import Layout from "../components/Layout";
-import SidePanel from "../components/SidePanel";
+import DashboardLayout from "../components/DashboardLayout";
 import Image from 'next/image';
 
 export default function TopTracks() {
@@ -22,10 +21,9 @@ export default function TopTracks() {
   }, []);
 
   return (
-    <Layout>
+    <DashboardLayout>
       <div className="container mx-auto px-4 flex">
         <div className="w-1/4">
-          <SidePanel />
         </div>
         <div className="w-3/4 pl-6">
           <h1 className="text-3xl text-[#903bac] font-bold my-8">Your Top Tracks</h1>
@@ -60,6 +58,6 @@ export default function TopTracks() {
           )}
         </div>
       </div>
-    </Layout>
+    </DashboardLayout>
   );
 }

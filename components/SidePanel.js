@@ -1,72 +1,42 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { FaHome, FaMicrophoneAlt, FaMusic, FaHistory, FaListUl, FaChartPie, FaCalendarAlt, FaChartBar } from 'react-icons/fa';
 
 export default function SidePanel() {
   const router = useRouter();
 
   const linkClass = (path) => 
-    `block py-2 px-4 rounded transition-colors duration-200 ${
+    `flex items-center py-3 px-4 rounded-lg transition-all duration-300 ${
       router.pathname === path
-        ? 'bg-green-500 text-white'
-        : 'text-gray-700 hover:bg-green-100'
+        ? 'bg-green-500 text-white shadow-lg transform scale-105'
+        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
     }`;
 
+  const menuItems = [
+    { href: '/dashboard', icon: FaHome, label: 'Overview' },
+    { href: '/top-artists', icon: FaMicrophoneAlt, label: 'Top Artists' },
+    { href: '/top-tracks', icon: FaMusic, label: 'Top Tracks' },
+    { href: '/recently-played', icon: FaHistory, label: 'Recently Played' },
+    { href: '/playlists', icon: FaListUl, label: 'Playlists' },
+    { href: '/genre-distribution', icon: FaChartPie, label: 'Genre Distribution' },
+    { href: '/listening-history', icon: FaCalendarAlt, label: 'Listening History' },
+    { href: '/artist-chart', icon: FaChartBar, label: 'Top Artists Chart' },
+    { href: '/track-chart', icon: FaChartBar, label: 'Top Tracks Chart' },
+  ];
+
   return (
-    <div className="bg-white shadow-md p-6 h-full">
-      <h2 className="text-xl font-bold mb-4">Dashboard</h2>
+    <div className="bg-gray-900 text-white shadow-xl p-6 h-full overflow-y-auto scrollbar-hide">
+      <h2 className="text-2xl font-bold mb-8 text-center text-green-400">Spotify Insights</h2>
       <nav>
-        <ul className="space-y-2">
-          <li>
-            <Link href="/dashboard" className={linkClass('/dashboard')}>
-              Overview
-            </Link>
-          </li>
-          <li>
-            <h3 className="font-semibold mt-4 mb-2 text-gray-500">Profile</h3>
-          </li>
-          <li>
-            <Link href="/top-artists" className={linkClass('/top-artists')}>
-              Top Artists
-            </Link>
-          </li>
-          <li>
-            <Link href="/top-tracks" className={linkClass('/top-tracks')}>
-              Top Tracks
-            </Link>
-          </li>
-          <li>
-            <Link href="/recently-played" className={linkClass('/recently-played')}>
-              Recently Played
-            </Link>
-          </li>
-          <li>
-            <Link href="/playlists" className={linkClass('/playlists')}>
-              Playlists
-            </Link>
-          </li>
-          <li>
-            <h3 className="font-semibold mt-4 mb-2 text-gray-500">Visualizations</h3>
-          </li>
-          <li>
-            <Link href="/genre-distribution" className={linkClass('/genre-distribution')}>
-              Genre Distribution
-            </Link>
-          </li>
-          <li>
-            <Link href="/listening-history" className={linkClass('/listening-history')}>
-              Listening History
-            </Link>
-          </li>
-          <li>
-            <Link href="/artist-chart" className={linkClass('/artist-chart')}>
-              Top Artists Chart
-            </Link>
-          </li>
-          <li>
-            <Link href="/track-chart" className={linkClass('/track-chart')}>
-              Top Tracks Chart
-            </Link>
-          </li>
+        <ul className="space-y-4">
+          {menuItems.map((item) => (
+            <li key={item.href}>
+              <Link href={item.href} className={linkClass(item.href)}>
+                <item.icon className="mr-3 text-lg" />
+                <span>{item.label}</span>
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>
