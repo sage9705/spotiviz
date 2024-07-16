@@ -2,6 +2,7 @@ import { useSession, signOut } from "next-auth/react";
 import Link from 'next/link';
 import LoginButton from '../components/LoginButton';
 import Head from 'next/head';
+import { FaSpotify, FaChartBar } from 'react-icons/fa';
 
 export default function Home() {
   const { data: session } = useSession();
@@ -17,14 +18,15 @@ export default function Home() {
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative z-10 bg-gray-800 p-10 rounded-2xl shadow-2xl text-center max-w-md w-full mx-4">
           <div className="mb-8">
-            <h1 className="text-5xl font-bold text-blue-800 mb-2 font-poppins">Spotiviz</h1>
-            <p className="text-green-400 text-lg">Visualize Your Spotify Journey</p>
+            <FaSpotify className="text-green-400 text-6xl mx-auto mb-4" />
+            <h1 className="text-5xl font-bold text-green-400 mb-2 font-poppins">Spotiviz</h1>
+            <p className="text-gray-300 text-lg">Visualize Your Spotify Journey</p>
           </div>
           {session ? (
             <div className="space-y-6">
-              <p className="text-green-400 font-semibold">Hello, {session.user.name || session.user.email}</p>
-              <Link href="/dashboard" className="block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-4 rounded-full transition duration-300 transform hover:scale-105">
-                Explore Your Dashboard
+              <p className="text-green-400 font-semibold">Welcome back, {session.user.name || session.user.email}!</p>
+              <Link href="/dashboard" className="block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-4 rounded-full transition duration-300 transform hover:scale-105 flex items-center justify-center">
+                <FaChartBar className="mr-2" /> Explore Your Dashboard
               </Link>
               <button
                 onClick={() => signOut()}
@@ -40,8 +42,8 @@ export default function Home() {
             </div>
           )}
         </div>
-        <div className="absolute bottom-4 left-4 text-white text-sm">
-          Powered by Spotify API
+        <div className="absolute bottom-4 left-4 text-white text-sm flex items-center">
+          <FaSpotify className="mr-2" /> Powered by Spotify API
         </div>
       </div>
       <style jsx global>{`
