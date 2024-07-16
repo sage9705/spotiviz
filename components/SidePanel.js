@@ -12,7 +12,7 @@ export default function SidePanel() {
     }`;
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6">
+    <div className="bg-white shadow-md p-6 h-full">
       <h2 className="text-xl font-bold mb-4">Dashboard</h2>
       <nav>
         <ul className="space-y-2">
