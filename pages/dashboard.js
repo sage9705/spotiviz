@@ -14,7 +14,7 @@ import TopTracks from "../components/TopTracks";
 export default function Dashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [view, setView] = useState("profile"); 
+  const [view, setView] = useState("profile");
 
   if (status === "loading") {
     return <Layout><p>Loading...</p></Layout>;
@@ -27,8 +27,8 @@ export default function Dashboard() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 flex">
-        <div className="w-3/4 pr-6">
+      <div className="flex">
+        <div className="w-[85%] pr-6 overflow-y-auto h-screen pb-20">
           <h1 className="text-3xl text-[#903bac] font-bold my-8">Your Spotify Insights</h1>
           
           <div className="mb-6">
@@ -85,7 +85,7 @@ export default function Dashboard() {
             </div>
           )}
         </div>
-        <div className="w-1/4">
+        <div className="w-[15%] fixed right-0 top-0 h-screen overflow-y-auto">
           <SidePanel />
         </div>
       </div>

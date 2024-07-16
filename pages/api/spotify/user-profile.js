@@ -2,23 +2,30 @@ import { getSession } from "next-auth/react";
 import { getSpotifyData } from "../../../lib/spotify";
 
 export default async function handler(req, res) {
-  const session = await getSession({ req });
-
-  if (!session) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-
   try {
-    const userProfile = await getSpotifyData(session.accessToken, "/me");
-    const followingCount = await getSpotifyData(session.accessToken, "/me/following?type=artist");
-    const playlists = await getSpotifyData(session.accessToken, "/me/playlists");
+    const session = await getSession({ req });
+
+    if (!session) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    const [userProfile, followingData, playlistsData] = await Promise.allSettled([
+      getSpotifyData(session.accessToken, "/me"),
+      getSpotifyData(session.accessToken, "/me/following?type=artist"),
+      getSpotifyData(session.accessToken, "/me/playlists")
+    ]);
+
+    const profile = userProfile.status === 'fulfilled' ? userProfile.value : {};
+    const following = followingData.status === 'fulfilled' ? followingData.value.artists?.total : 0;
+    const playlists = playlistsData.status === 'fulfilled' ? playlistsData.value.total : 0;
 
     res.status(200).json({
-      ...userProfile,
-      following: followingCount.artists.total,
-      playlists: playlists.total,
+      ...profile,
+      following,
+      playlists,
     });
   } catch (error) {
-    res.status(500).json({ error: "Error fetching user profile" });
+    console.error("Error in user profile API:", error);
+    res.status(500).json({ error: "Error fetching user profile", details: error.message });
   }
 }
