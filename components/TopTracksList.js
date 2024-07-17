@@ -22,7 +22,7 @@ export default function TopTracksList({ limit = 10 }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {tracks.map((track, index) => (
-        <div key={track.id} className="bg-gray-800 shadow-lg rounded-lg p-4 transition duration-300 transform hover:scale-105">
+        <div key={track.id} className="bg-gray-800 shadow-lg rounded-lg p-4 transition duration-300 transform hover:shadow-green-400/30 hover:scale-105">
           <div className="flex items-center mb-4">
             <Image src={track.album.images[0]?.url} alt={track.name} width={80} height={80} className="rounded-md" />
             <div className="ml-4">

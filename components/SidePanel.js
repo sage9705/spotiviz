@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { FaHome, FaMicrophoneAlt, FaMusic, FaHistory, FaListUl, FaChartPie, FaCalendarAlt, FaChartBar } from 'react-icons/fa';
+import { FaHome, FaMicrophoneAlt, FaMusic, FaHistory, FaListUl, FaChartPie, FaCalendarAlt, FaChartBar, FaEye } from 'react-icons/fa';
 
 export default function SidePanel() {
   const router = useRouter();
@@ -13,15 +13,16 @@ export default function SidePanel() {
     }`;
 
   const menuItems = [
-    { href: '/dashboard', icon: FaHome, label: 'Overview' },
+    { href: '/', icon: FaHome, label: 'Home' },
+    { href: '/dashboard', icon: FaEye, label: 'Overview' },
     { href: '/top-artists', icon: FaMicrophoneAlt, label: 'Top Artists' },
     { href: '/top-tracks', icon: FaMusic, label: 'Top Tracks' },
     { href: '/recently-played', icon: FaHistory, label: 'Recently Played' },
     { href: '/playlists', icon: FaListUl, label: 'Playlists' },
     { href: '/genre-distribution', icon: FaChartPie, label: 'Genre Distribution' },
-    { href: '/listening-history', icon: FaCalendarAlt, label: 'Listening History' },
+    // { href: '/listening-history', icon: FaCalendarAlt, label: 'Listening History' },
     { href: '/artist-chart', icon: FaChartBar, label: 'Top Artists Chart' },
-    { href: '/track-chart', icon: FaChartBar, label: 'Top Tracks Chart' },
+    // { href: '/track-chart', icon: FaChartBar, label: 'Top Tracks Chart' },
   ];
 
   return (

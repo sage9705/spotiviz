@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       return acc;
     }, {});
     
-    // Sort genres by count and take top 10
+ 
     const topGenres = Object.entries(genreCounts)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 10)

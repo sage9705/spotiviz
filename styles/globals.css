@@ -64,7 +64,7 @@ a:hover {
 }
 
 .chart-container {
-  background-color: var(--spotify-gray);
+  /* background-color: var(--spotify-gray); */
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 2rem;

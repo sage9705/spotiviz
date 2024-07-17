@@ -1,17 +1,16 @@
 import DashboardLayout from "../components/DashboardLayout";
 import TopArtists from "../components/TopArtists";
+import { FaMicrophoneAlt } from 'react-icons/fa';
 
 export default function ArtistChartPage() {
   return (
     <DashboardLayout>
-      <div className="container mx-auto px-4 flex">
-        <div className="w-1/4">
-        </div>
-        <div className="w-3/4 pl-6">
-          <h1 className="text-3xl text-[#903bac] font-bold my-8">Top Artists Chart</h1>
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <TopArtists />
-          </div>
+      <div className="bg-gray-900 text-white min-h-screen p-8">
+        <h1 className="text-4xl font-bold mb-8 text-green-400 flex items-center">
+          <FaMicrophoneAlt className="mr-4" /> Top Artists Chart
+        </h1>
+        <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
+          <TopArtists />
         </div>
       </div>
     </DashboardLayout>

@@ -25,7 +25,7 @@ export default function Home() {
           {session ? (
             <div className="space-y-6">
               <p className="text-green-400 font-semibold">Welcome back, {session.user.name || session.user.email}!</p>
-              <Link href="/dashboard" className="block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-4 rounded-full transition duration-300 transform hover:scale-105 flex items-center justify-center">
+              <Link href="/dashboard" className="block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-4 rounded-full transition duration-300 transform hover:scale-105 items-center justify-center">
                 <FaChartBar className="mr-2" /> Explore Your Dashboard
               </Link>
               <button

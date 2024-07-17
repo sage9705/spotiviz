@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import useWindowSize from '../hooks/useWindowSize';
+import { FaSpinner } from 'react-icons/fa';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -25,8 +26,8 @@ export default function GenreDistribution() {
       });
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (isLoading) return <div className="flex justify-center items-center h-64"><FaSpinner className="animate-spin text-4xl text-green-400" /></div>;
+  if (error) return <div className="text-red-500 text-center">Error: {error}</div>;
 
   const chartData = {
     labels: Object.keys(genres),
@@ -34,13 +35,11 @@ export default function GenreDistribution() {
       {
         data: Object.values(genres),
         backgroundColor: [
-          '#FF6384',
-          '#36A2EB',
-          '#FFCE56',
-          '#4BC0C0',
-          '#9966FF',
-          '#FF9F40',
+          '#1DB954', '#1ED760', '#2EBD59', '#57B660', '#7C3AED', '#A78BFA',
+          '#F59E0B', '#FBBF24', '#34D399', '#6EE7B7', '#3B82F6', '#93C5FD',
         ],
+        borderColor: '#121212',
+        borderWidth: 2,
       },
     ],
   };
@@ -50,18 +49,28 @@ export default function GenreDistribution() {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'top',
+        position: 'right',
+        labels: {
+          color: '#FFFFFF',
+          font: {
+            size: 12,
+          },
+        },
       },
-      title: {
-        display: true,
-        text: 'Genre Distribution',
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        titleColor: '#1DB954',
+        bodyColor: '#FFFFFF',
       },
     },
   };
 
   return (
-    <div className="chart-container" style={chartSize}>
-      <Doughnut data={chartData} options={options} />
+    <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
+      <h2 className="text-2xl font-bold mb-4 text-green-400"></h2>
+      <div className="chart-container" style={chartSize}>
+        <Doughnut data={chartData} options={options} />
+      </div>
     </div>
   );
 }
