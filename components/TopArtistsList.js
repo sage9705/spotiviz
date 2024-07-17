@@ -9,7 +9,12 @@ export default function TopArtistsList({ limit = 10 }) {
     fetch(`/api/spotify/top-artists?limit=${limit}`)
       .then(res => res.json())
       .then(data => {
-        setArtists(data);
+        setArtists(Array.isArray(data) ? data : []);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error("Error fetching top artists:", error);
+        setArtists([]);
         setIsLoading(false);
       });
   }, [limit]);
