@@ -23,7 +23,7 @@ export default function TopArtistsList({ limit = 10 }) {
       {artists.map((artist, index) => (
         <div key={artist.id} className="bg-gray-800 shadow-lg rounded-lg p-4 transition duration-300 transform hover:scale-105">
           <div className="flex items-center mb-4">
-            <Image src={artist.images[0]?.url || '/default-artist.png'} alt={artist.name} width={80} height={80} className="rounded-full" />
+            <Image src={artist.images[0]?.url} alt={artist.name} width={80} height={80} className="rounded-full" />
             <div className="ml-4">
               <p className="font-bold text-lg text-green-400">{index + 1}. {artist.name}</p>
               <p className="text-gray-400 text-sm">{artist.genres.slice(0, 2).join(', ')}</p>

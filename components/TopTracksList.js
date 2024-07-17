@@ -24,7 +24,7 @@ export default function TopTracksList({ limit = 10 }) {
       {tracks.map((track, index) => (
         <div key={track.id} className="bg-gray-800 shadow-lg rounded-lg p-4 transition duration-300 transform hover:scale-105">
           <div className="flex items-center mb-4">
-            <Image src={track.album.images[0]?.url || '/default-album.png'} alt={track.name} width={80} height={80} className="rounded-md" />
+            <Image src={track.album.images[0]?.url} alt={track.name} width={80} height={80} className="rounded-md" />
             <div className="ml-4">
               <p className="font-bold text-lg text-green-400">{index + 1}. {track.name}</p>
               <p className="text-gray-400 text-sm">{track.artists.map(a => a.name).join(', ')}</p>

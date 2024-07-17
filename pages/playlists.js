@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import DashboardLayout from '../components/DashboardLayout';
 import Image from 'next/image';
+import { FaMusic } from 'react-icons/fa';
 
 export default function Playlists() {
   const [playlists, setPlaylists] = useState([]);
@@ -22,33 +23,33 @@ export default function Playlists() {
 
   return (
     <DashboardLayout>
-      <div className="container mx-auto px-4 flex">
-        <div className="w-1/4">
-        </div>
-        <div className="w-3/4 pl-6">
-          <h1 className="text-3xl text-[#903bac] font-bold my-8">Your Playlists</h1>
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : error ? (
-            <p>Error: {error}</p>
-          ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {playlists.map(playlist => (
-                <div key={playlist.id} className="bg-white rounded-lg shadow-md p-4">
-                  <Image 
-                    src={playlist.images[0]?.url || '/default-playlist.png'} 
-                    alt={playlist.name}
-                    width={200}
-                    height={200}
-                    className="w-full h-auto rounded-md"
-                  />
-                  <h2 className="text-lg font-semibold mt-2">{playlist.name}</h2>
-                  <p className="text-sm text-gray-500">{playlist.tracks.total} tracks</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+      <div className="bg-gray-900 text-white min-h-screen p-8">
+        <h1 className="text-4xl font-bold mb-8 text-green-400 flex items-center">
+          <FaMusic className="mr-4" /> Your Playlists
+        </h1>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-64">
+            <div className="loader"></div>
+          </div>
+        ) : error ? (
+          <p className="text-red-500 text-xl">Error: {error}</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {playlists.map(playlist => (
+              <div key={playlist.id} className="bg-gray-800 rounded-xl p-4 shadow-lg transition-all duration-300 hover:shadow-green-400/30 hover:scale-105">
+                <Image 
+                  src={playlist.images[0]?.url} 
+                  alt={playlist.name}
+                  width={200}
+                  height={200}
+                  className="w-full h-auto rounded-md mb-4"
+                />
+                <h2 className="text-xl font-semibold text-green-400 mb-2">{playlist.name}</h2>
+                <p className="text-sm text-gray-400">{playlist.tracks.total} tracks</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </DashboardLayout>
   );

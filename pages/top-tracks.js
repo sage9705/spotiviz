@@ -37,7 +37,7 @@ export default function TopTracks() {
                 <div key={track.id} className="flex items-center bg-white rounded-lg shadow-md p-4">
                   <div className="flex-shrink-0 mr-4">
                     <Image 
-                      src={track.album.images[0]?.url || '/default-album.png'} 
+                      src={track.album.images[0]?.url} 
                       alt={track.name}
                       width={64}
                       height={64}

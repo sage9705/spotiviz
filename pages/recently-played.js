@@ -37,7 +37,7 @@ export default function RecentlyPlayed() {
                 <div key={item.played_at} className="flex items-center bg-white rounded-lg shadow-md p-4">
                   <div className="flex-shrink-0 mr-4">
                     <Image 
-                      src={item.track.album.images[0]?.url || '/default-album.png'} 
+                      src={item.track.album.images[0]?.url} 
                       alt={item.track.name}
                       width={64}
                       height={64}

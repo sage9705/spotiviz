@@ -36,7 +36,7 @@ export default function TopArtists() {
               {artists.map((artist, index) => (
                 <div key={artist.id} className="bg-white rounded-lg shadow-md p-4">
                   <Image 
-                    src={artist.images[0]?.url || '/default-artist.png'} 
+                    src={artist.images[0]?.url} 
                     alt={artist.name}
                     width={200}
                     height={200}
