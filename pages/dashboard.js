@@ -9,12 +9,15 @@ import GenreDistribution from "../components/GenreDistribution";
 import ListeningHistory from "../components/ListeningHistory";
 import TopArtists from "../components/TopArtists";
 import TopTracks from "../components/TopTracks";
+import AllTopArtists from "../components/AllTopArtists";
+import AllTopTracks from "../components/AllTopTracks";
 import { FaUser, FaChartBar } from 'react-icons/fa';
 
 export default function Dashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [view, setView] = useState("profile");
+  const [detailView, setDetailView] = useState(null);
 
   if (status === "loading") {
     return <DashboardLayout><div className="flex justify-center items-center h-screen"><div className="loader"></div></div></DashboardLayout>;
@@ -24,7 +27,7 @@ export default function Dashboard() {
     router.push("/");
     return null;
   }
-
+  
   return (
     <DashboardLayout>
       <div className="bg-gray-900 text-white min-h-screen p-8">
@@ -53,20 +56,30 @@ export default function Dashboard() {
           </button>
         </div>
 
-        {view === "profile" ? (
+        {detailView === "allTopArtists" ? (
+          <AllTopArtists onBack={() => setDetailView(null)} />
+        ) : detailView === "allTopTracks" ? (
+          <AllTopTracks onBack={() => setDetailView(null)} />
+        ) : view === "profile" ? (
           <div className="space-y-12">
             <UserProfile />
             <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
               <h2 className="text-2xl font-bold mb-6 text-green-400">Top Artists of All Time</h2>
               <TopArtistsList limit={10} />
-              <button className="mt-6 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105">
+              <button 
+                onClick={() => setDetailView("allTopArtists")}
+                className="mt-6 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
+              >
                 View All Top Artists
               </button>
             </div>
             <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
               <h2 className="text-2xl font-bold mb-6 text-green-400">Top Tracks of All Time</h2>
               <TopTracksList limit={10} />
-              <button className="mt-6 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105">
+              <button 
+                onClick={() => setDetailView("allTopTracks")}
+                className="mt-6 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
+              >
                 View All Top Tracks
               </button>
             </div>

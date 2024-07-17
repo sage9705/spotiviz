@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
-  const { limit = 10, time_range = "long_term" } = req.query;
+  const { limit = 150, time_range = "long_term" } = req.query;
 
   try {
     const topArtists = await getSpotifyData(
