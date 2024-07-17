@@ -27,7 +27,7 @@ export default function SidePanel() {
 
   return (
     <div className="bg-gray-900 text-white shadow-xl p-6 h-full overflow-y-auto scrollbar-hide">
-      <h2 className="text-2xl font-bold mb-8 text-center text-green-400">Spotify Insights</h2>
+      {/* <h2 className="text-2xl font-bold mb-8 text-center text-green-400">Spotify Insights</h2> */}
       <nav>
         <ul className="space-y-4">
           {menuItems.map((item) => (
