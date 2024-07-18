@@ -20,7 +20,7 @@ export default function AllTopArtists({ onBack }) {
       {isLoading ? (
         <div className="text-center py-4">Loading all top artists...</div>
       ) : (
-        <TopArtistsList limit={100} />
+        <TopArtistsList limit={50} />
       )}
     </div>
   );

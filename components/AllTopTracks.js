@@ -20,7 +20,7 @@ export default function AllTopTracks({ onBack }) {
       {isLoading ? (
         <div className="text-center py-4">Loading all top tracks...</div>
       ) : (
-        <TopTracksList limit={100} /> 
+        <TopTracksList limit={50} /> 
       )}
     </div>
   );
