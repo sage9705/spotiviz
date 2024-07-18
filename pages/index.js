@@ -45,6 +45,9 @@ export default function Home() {
         <div className="absolute bottom-4 left-4 text-white text-sm flex items-center">
           <FaSpotify className="mr-2" /> Powered by Spotify API
         </div>
+        <div className="absolute bottom-8 pr-2 left-5 ">
+          Developed by <a href="https://www.linkedin.com/in/edem-kumahor-1995aa141" target="_blank" className="text-green-400 hover:text-green-300 transition duration-300">Edem Godwin Kumahor</a>
+        </div>
       </div>
       <style jsx global>{`
         body {
