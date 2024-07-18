@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
+import { refreshSpotifyToken } from "../../../lib/spotify";
 
 export default NextAuth({
   providers: [
@@ -15,64 +16,68 @@ export default NextAuth({
   ],
   callbacks: {
     async jwt({ token, account, user }) {
+      // Initial sign in
       if (account && user) {
         return {
           accessToken: account.access_token,
           refreshToken: account.refresh_token,
-          accessTokenExpires: account.expires_at * 1000,
+          accessTokenExpires: account.expires_at * 1000, // Convert to milliseconds
           user,
         };
       }
 
+      // Return previous token if the access token has not expired yet
       if (Date.now() < token.accessTokenExpires) {
         return token;
       }
 
-      return refreshAccessToken(token);
+      // Access token has expired, try to refresh it
+      try {
+        const refreshedTokens = await refreshSpotifyToken(token.refreshToken);
+
+        if (!refreshedTokens) {
+          throw new Error("Failed to refresh access token");
+        }
+
+        return {
+          ...token,
+          accessToken: refreshedTokens.accessToken,
+          accessTokenExpires: Date.now() + refreshedTokens.expiresIn * 1000,
+          // Fall back to old refresh token, but note that
+          // many providers give a new refresh token with a new access token
+          refreshToken: refreshedTokens.refreshToken ?? token.refreshToken,
+        };
+      } catch (error) {
+        console.error("Error refreshing access token", error);
+        return {
+          ...token,
+          error: "RefreshAccessTokenError",
+        };
+      }
     },
     async session({ session, token }) {
       session.user = token.user;
       session.accessToken = token.accessToken;
       session.error = token.error;
+
       return session;
     },
   },
+  events: {
+    async signIn(message) {
+      console.log("Signed in", message);
+    },
+    async signOut(message) {
+      console.log("Signed out", message);
+    },
+    async error(message) {
+      console.error("NextAuth error", message);
+    },
+  },
+  debug: process.env.NODE_ENV === 'development',
+  secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: '/auth/signin',
+    error: '/auth/error',
+  },
 });
-
-async function refreshAccessToken(token) {
-  try {
-    const url =
-      "https://accounts.spotify.com/api/token?" +
-      new URLSearchParams({
-        client_id: process.env.SPOTIFY_CLIENT_ID,
-        client_secret: process.env.SPOTIFY_CLIENT_SECRET,
-        grant_type: "refresh_token",
-        refresh_token: token.refreshToken,
-      });
-
-    const response = await fetch(url, {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      method: "POST",
-    });
-
-    const refreshedTokens = await response.json();
-
-    if (!response.ok) {
-      throw refreshedTokens;
-    }
-
-    return {
-      ...token,
-      accessToken: refreshedTokens.access_token,
-      accessTokenExpires: Date.now() + refreshedTokens.expires_in * 1000,
-      refreshToken: refreshedTokens.refresh_token ?? token.refreshToken,
-    };
-  } catch (error) {
-    return {
-      ...token,
-      error: "RefreshAccessTokenError",
-    };
-  }
-}

@@ -20,9 +20,8 @@ export default function SidePanel() {
     { href: '/recently-played', icon: FaHistory, label: 'Recently Played' },
     { href: '/playlists', icon: FaListUl, label: 'Playlists' },
     { href: '/genre-distribution', icon: FaChartPie, label: 'Genre Distribution' },
-    // { href: '/listening-history', icon: FaCalendarAlt, label: 'Listening History' },
+    { href: '/listening-history', icon: FaCalendarAlt, label: 'Listening History' },
     { href: '/artist-chart', icon: FaChartBar, label: 'Top Artists Chart' },
-    // { href: '/track-chart', icon: FaChartBar, label: 'Top Tracks Chart' },
   ];
 
   return (

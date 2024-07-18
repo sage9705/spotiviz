@@ -9,15 +9,19 @@ export default async function handler(req, res) {
       return res.status(401).json({ error: "Unauthorized" });
     }
 
-    const [userProfile, followingData, playlistsData] = await Promise.allSettled([
+    if (session.error === "RefreshAccessTokenError") {
+      return res.status(403).json({ error: "Failed to refresh access token" });
+    }
+
+    const [userProfile, followingData, playlistsData] = await Promise.all([
       getSpotifyData(session.accessToken, "/me"),
       getSpotifyData(session.accessToken, "/me/following?type=artist"),
       getSpotifyData(session.accessToken, "/me/playlists")
     ]);
 
-    const profile = userProfile.status === 'fulfilled' ? userProfile.value : {};
-    const following = followingData.status === 'fulfilled' ? followingData.value.artists?.total : 0;
-    const playlists = playlistsData.status === 'fulfilled' ? playlistsData.value.total : 0;
+    const profile = userProfile || {};
+    const following = followingData?.artists?.total || 0;
+    const playlists = playlistsData?.total || 0;
 
     res.status(200).json({
       ...profile,
