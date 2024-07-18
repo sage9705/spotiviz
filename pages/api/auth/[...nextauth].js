@@ -16,22 +16,19 @@ export default NextAuth({
   ],
   callbacks: {
     async jwt({ token, account, user }) {
-      // Initial sign in
       if (account && user) {
         return {
           accessToken: account.access_token,
           refreshToken: account.refresh_token,
-          accessTokenExpires: account.expires_at * 1000, // Convert to milliseconds
+          accessTokenExpires: account.expires_at * 1000, 
           user,
         };
       }
 
-      // Return previous token if the access token has not expired yet
       if (Date.now() < token.accessTokenExpires) {
         return token;
       }
 
-      // Access token has expired, try to refresh it
       try {
         const refreshedTokens = await refreshSpotifyToken(token.refreshToken);
 
@@ -43,8 +40,6 @@ export default NextAuth({
           ...token,
           accessToken: refreshedTokens.accessToken,
           accessTokenExpires: Date.now() + refreshedTokens.expiresIn * 1000,
-          // Fall back to old refresh token, but note that
-          // many providers give a new refresh token with a new access token
           refreshToken: refreshedTokens.refreshToken ?? token.refreshToken,
         };
       } catch (error) {
@@ -76,8 +71,4 @@ export default NextAuth({
   },
   debug: process.env.NODE_ENV === 'development',
   secret: process.env.NEXTAUTH_SECRET,
-  pages: {
-    signIn: '/auth/signin',
-    error: '/auth/error',
-  },
 });
