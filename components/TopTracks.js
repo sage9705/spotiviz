@@ -110,7 +110,7 @@ export default function TopTracks() {
         <Bar data={chartData} options={options} />
       </div>
       <div className="mt-4">
-        <h3 className="text-xl font-bold mb-2 text-green-400">Tracklist</h3>
+        {/* <h3 className="text-xl font-bold mb-2 text-green-400">Tracklist</h3>
         <ul className="space-y-2">
           {tracks.map((track, index) => (
             <li key={track.id} className="flex items-center justify-between bg-gray-700 p-2 rounded-md">
@@ -123,7 +123,7 @@ export default function TopTracks() {
               </button>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     </div>
   );
