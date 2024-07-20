@@ -28,7 +28,7 @@ export default function Home() {
           </div>
           {session ? (
             <div className="space-y-4 sm:space-y-6">
-              <p className="text-green-400 font-semibold text-base sm:text-lg">Welcome back, {session.user.name || session.user.email}!</p>
+              <p className="text-green-400 font-semibold text-base sm:text-lg">{session.user.name || session.user.email}</p>
               <Link href="/dashboard" className="group flex items-center justify-center w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-full transition duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base">
                 <FaChartBar className="mr-2 sm:mr-3 text-lg sm:text-xl group-hover:animate-bounce" /> 
                 <span>Explore Your Dashboard</span>
