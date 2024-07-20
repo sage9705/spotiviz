@@ -20,7 +20,7 @@ export default function Home() {
         <div className="relative z-10 bg-gray-800 bg-opacity-80 p-8 sm:p-12 rounded-3xl shadow-2xl text-center w-full max-w-md mx-auto backdrop-filter backdrop-blur-lg border border-gray-700">
           <div className="mb-8 sm:mb-10">
             <div className="relative inline-block">
-              <FaSpotify className="text-green-400 text-6xl sm:text-7xl mx-auto mb-4 animate-pulse" />
+              {/* <FaSpotify className="text-green-400 text-6xl sm:text-7xl mx-auto mb-4 animate-pulse" /> */}
               <div className="absolute inset-0 bg-green-400 rounded-full filter blur-xl opacity-50 animate-ping"></div>
             </div>
             <h1 className="text-4xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 mb-3 font-poppins">Spotiviz</h1>
