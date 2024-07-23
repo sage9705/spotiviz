@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     }
 
     if (session.error === "RefreshAccessTokenError") {
-      return res.status(403).json({ error: "Failed to refresh access token" });
+      return res.status(401).json({ error: "Invalid or expired token" });
     }
 
     const [userProfile, followingData, playlistsData] = await Promise.all([
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
       playlists,
     });
   } catch (error) {
-    console.error("Error in user profile API:", error);
-    res.status(500).json({ error: "Error fetching user profile", details: error.message });
+    console.error("Error fetching user profile:", error);
+    res.status(500).json({ error: "Error fetching user profile" });
   }
 }
