@@ -45,6 +45,7 @@ export default function TopArtists() {
 
   if (isLoading) return <div className="flex justify-center items-center h-64"><FaSpinner className="animate-spin text-4xl text-green-400" /></div>;
   if (error) return <div className="text-red-500 text-center">Error: {error}</div>;
+  if (artists.length === 0) return <div className="text-center">No top artists available</div>;
 
   const chartData = {
     labels: artists.map(artist => artist.name),
