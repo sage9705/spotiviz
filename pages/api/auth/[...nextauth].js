@@ -12,8 +12,10 @@ export default NextAuth({
           scope: "user-read-email user-top-read user-read-recently-played user-follow-read playlist-read-private user-read-private playlist-read-collaborative",
         },
       },
+      callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/callback/spotify`,
     }),
   ],
+  
   callbacks: {
     async jwt({ token, account, user }) {
       if (account && user) {
