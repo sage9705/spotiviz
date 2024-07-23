@@ -12,6 +12,7 @@ export default NextAuth({
           scope: "user-read-email user-top-read user-read-recently-played user-follow-read playlist-read-private user-read-private playlist-read-collaborative",
         },
       },
+      callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/callback/spotify`,
     }),
   ],
   callbacks: {
@@ -20,7 +21,7 @@ export default NextAuth({
         return {
           accessToken: account.access_token,
           refreshToken: account.refresh_token,
-          accessTokenExpires: account.expires_at * 1000,
+          accessTokenExpires: account.expires_at * 1000, 
           user,
         };
       }
@@ -38,9 +39,9 @@ export default NextAuth({
 
         return {
           ...token,
-          accessToken: refreshedTokens.access_token,
-          accessTokenExpires: Date.now() + refreshedTokens.expires_in * 1000,
-          refreshToken: refreshedTokens.refresh_token ?? token.refreshToken,
+          accessToken: refreshedTokens.accessToken,
+          accessTokenExpires: Date.now() + refreshedTokens.expiresIn * 1000,
+          refreshToken: refreshedTokens.refreshToken ?? token.refreshToken,
         };
       } catch (error) {
         console.error("Error refreshing access token", error);
