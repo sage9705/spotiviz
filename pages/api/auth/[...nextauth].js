@@ -9,7 +9,7 @@ export default NextAuth({
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
       authorization: {
         params: {
-          scope: "user-read-email user-top-read user-read-recently-played user-follow-read playlist-read-private",
+          scope: "user-read-email user-top-read user-read-recently-played user-follow-read playlist-read-private user-read-private playlist-read-collaborative",
         },
       },
     }),
